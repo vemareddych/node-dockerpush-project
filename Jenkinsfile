@@ -26,7 +26,7 @@ pipeline {
         }
         stage("Push Docker Image") {
             steps {
-                withCredentials([string(credentialsId: 'docker-hub-password', variable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-password', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'docker login -u cvreddy -p $DOCKER_PASS'
                     sh 'docker push cvreddy/my-node-app:1'
                 }
