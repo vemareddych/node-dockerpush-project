@@ -21,6 +21,14 @@ pipeline {
     stage("Build image"){
       steps{
         sh 'docker build -t my-node-app:1 .'
+        sh 'docker tag cvreddy/my-node-app:1'
+      }
+    }
+    stage("docker push"){
+      steps{
+        sh 'docker login -u cvreddy -p @p78H06?.@'
+        sh 'docker push cvreddy/my-node-app:1'
+        
       }
     }
     
