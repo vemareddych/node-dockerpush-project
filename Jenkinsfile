@@ -21,14 +21,14 @@ pipeline {
         stage("Build Docker Image") {
             steps {
                 sh 'docker build -t my-node-app:1 .'
-                sh 'docker tag my-node-app:1 cvreddy/my-node-app:1'
+                sh 'docker tag my-node-app:1 vemarepo/my-node-app:1'
             }
         }
         stage("Push Docker Image") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-password', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'docker login -u cvreddy -p $DOCKER_PASS'
-                    sh 'docker push cvreddy/my-node-app:1'
+                    sh 'docker push vemarepo/my-node-app:1'
                 }
             }
         }
